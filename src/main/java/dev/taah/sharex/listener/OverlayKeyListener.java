@@ -8,11 +8,13 @@ import dev.taah.sharex.manager.KeyManager;
 import dev.taah.sharex.util.Constants;
 import dev.taah.sharex.util.KeyUtils;
 import javafx.application.Platform;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-public class GlobalKeyListener implements NativeKeyListener, NativeMouseListener {
+public class OverlayKeyListener implements NativeKeyListener, NativeMouseListener {
 
     private static final SortedSet<KeyManager.ClickedKey> PRESSED_KEYS = new TreeSet<>();
 
@@ -32,18 +34,13 @@ public class GlobalKeyListener implements NativeKeyListener, NativeMouseListener
             }
 
             if (screenshotting) {
-//                System.out.println("Screenshotting");
                 boolean previous = ScreenshotTool.screenshotManager().screenshotting();
                 if (!previous) {
-//                    System.out.println("not previously screenshotting");
-                    //show overlay and start drag
                     Platform.setImplicitExit(false);
                     Platform.runLater(() -> {
-//                        System.out.println("showing stage");
-                        ScreenshotTool.stage().getScene().setFill(Constants.OVERLAY_COLOR);
-                        ScreenshotTool.stage().setFullScreen(true);
-                        ScreenshotTool.stage().setAlwaysOnTop(true);
-//                        System.out.println("finished");
+                        ScreenshotTool.mainScene().stage().hide();
+                        ScreenshotTool.overlayScene().stage().show();
+
                     });
                     ScreenshotTool.screenshotManager().screenshotting(true);
                 }
@@ -52,20 +49,13 @@ public class GlobalKeyListener implements NativeKeyListener, NativeMouseListener
             if (ScreenshotTool.screenshotManager().screenshotting() && nativeEvent.getKeyCode() == ScreenshotTool.keyManager().cancelKeybind()) {
                 Platform.setImplicitExit(false);
                 Platform.runLater(() -> {
-                    ScreenshotTool.stage().setFullScreen(false);
-                    ScreenshotTool.stage().show();
-                    ScreenshotTool.stage().setAlwaysOnTop(false);
-                    ScreenshotTool.stage().getScene().setFill(Constants.OVERLAY_HIDDEN);
-                    ScreenshotTool.screenshotManager().overlay().setVisible(false);
-                    ScreenshotTool.screenshotManager().overlay().setWidth(0);
-                    ScreenshotTool.screenshotManager().overlay().setHeight(0);
+                    ScreenshotTool.overlayScene().stage().hide();
+                    ScreenshotTool.mainScene().stage().show();
                 });
                 ScreenshotTool.screenshotManager().screenshotting(false);
-//                System.out.println("not screenshotting");
             }
         }
     }
-
 
 
     @Override

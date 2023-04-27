@@ -35,11 +35,6 @@ public class KeyUtils {
                 }
             }
             String keyText = NativeKeyEvent.getKeyText(key.keyCode());
-//            if (keyText.equalsIgnoreCase("Unknown keyCode")) {
-//                if (key.keyCode() == 0xe36) {
-//
-//                }
-//            }
             res.append(keyText);
             if (iterator.hasNext()) {
                 res.append("+");

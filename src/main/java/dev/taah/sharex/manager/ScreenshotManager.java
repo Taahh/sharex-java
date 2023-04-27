@@ -22,7 +22,7 @@ public class ScreenshotManager {
         this.overlay.setStrokeType(StrokeType.INSIDE);
         this.overlay.setStroke(Color.WHITE);
         this.overlay.setStrokeWidth(5);
-        ScreenshotTool.root().getChildren().add(this.overlay);
+        ScreenshotTool.overlayScene().root().getChildren().add(this.overlay);
     }
 
     public Rectangle overlay() {
