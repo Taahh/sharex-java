@@ -2,5 +2,8 @@
 
 <?import javafx.scene.layout.*?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="734.0" prefWidth="512.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" />
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="734.0" prefWidth="512.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.taah.sharex.ScreenshotUIController">
+   <children>
+      <TilePane fx:id="imageHolder" layoutX="65.0" prefHeight="295.0" prefWidth="448.0" style="-fx-background-color: #787877;" />
+   </children>
+</Pane>

@@ -74,7 +74,7 @@ public class OverlayScene extends AbstractScene<Pane> {
                         } catch (AWTException e) {
                             throw new RuntimeException(e);
                         }
-                        final File file = new File(new Date().toString() + ".png");
+                        final File file = new File("images" + File.separator + new Date().toString() + ".png");
                         try {
                             ImageIO.write(img, "png", file);
                             FileTransferable ft = new FileTransferable(Collections.singletonList(file));
